@@ -1,0 +1,43 @@
+<div class="container">
+    <h2>
+    {{title}}
+    </h2>
+    <button class="btn btn-primary d-flex" (click)="toggleIsNewBadge()">
+        <span class="material-icons">
+            {{showBadge ? 'visibility_off' : 'visibility'}}
+        </span>
+        {{showBadge ? 'Cacher' : 'Afficher'}} nouveau
+    </button>
+
+    <div class="my-2">
+        <div class="row d-flex">
+            <div class="col-md-4">
+                <span>Filtre actuel: </span>
+                <b>{{carFilter}}</b>
+            </div>
+            <div class="col-md-8 form-group">
+                <input type="text" class="form-control" [(ngModel)] = "carFilter">
+            </div>
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col" *ngFor="let car of cars">
+          <div class="card">
+            <img [src]="car.image" [title]="car.marque" class="card-img-top" [alt]="car.marque">
+            <div class="card-body">
+              <h5 class="card-title">{{car.marque}}</h5>
+              <p class="card-text">
+              
+                Prix: {{car.prix}}, Année: {{car.annee}}, Couleur: {{car.couleur}},
+                 Type de carburant: {{car.carburant}}, Transmission: {{car.transmission}},
+                  Autres options: {{car.options}}
+              </p>
+
+              <span class="badge text-bg-success" *ngIf="showBadge">Nouveau</span>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+
